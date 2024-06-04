@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RedisHelper
+module RedisHelper
   def self.add_male_count(count)
     redis.incrby(redis_key('male'), count)
   end

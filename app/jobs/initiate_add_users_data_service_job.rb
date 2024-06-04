@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class InitiateAddUserDataServiceJob < ApplicationJob
-  queue_as :default
+class InitiateAddUsersDataServiceJob < ApplicationJob
+  queue_as :high_priority
 
   def perform
     AddUsersDataService.new.call

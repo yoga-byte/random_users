@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class AddUsersDataService
+  def initialize(created_at_time = Time.zone.now)
+    @created_at_time = created_at_time
+  end
+
   def call
     if api_response.code == '200'
       before_count = gender_count
@@ -36,7 +40,8 @@ class AddUsersDataService
         name: user_data['name'],
         location: user_data['location'],
         age: user_data['dob']['age'],
-        gender: user_data['gender']
+        gender: user_data['gender'],
+        created_at: @created_at_time
       }
       user = users_by_uuid[uuid] || User.new
       user.attributes = attributes
