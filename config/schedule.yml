@@ -1,0 +1,9 @@
+daily_record_service_job:
+  cron: '*/3 * * * *'
+  class: 'CallCreateDailyRecordServiceJob'
+  active_job: true
+
+initate_add_user_service_job:
+  cron: '*/1 * * * *'
+  class: 'InitiateAddUserDataServiceJob'
+  active_job: true

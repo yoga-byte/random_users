@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User List</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    tr:hover {background-color: #f2f2f2;}
+    a {
+      text-decoration: none;
+      color: blue;
+    }
+    a:hover {
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <h1>User List</h1>
+  <p>Total Users: <%=@total_users%></p>
+  <p><a href ="daily_records" >Daily Records</a></p>
+  <form action="" method="get"> <label for="search">Search by Name:</label>
+    <input type="text" id="search" name="search_term" value="<%= params[:search_term] || '' %>"> <input type="submit" value="Search">
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.full_name %></td>
+          <td><%= user.age %></td>
+          <td><%= user.gender %></td>
+          <td>
+            <form action="<%= user_path(user) %>" method="delete" data-remote="true">
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit" data-confirm="Are you sure you want to delete #{user.full_name}?" >Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>
