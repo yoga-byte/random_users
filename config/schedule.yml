@@ -4,6 +4,6 @@ daily_record_service_job:
   active_job: true
 
 initate_add_user_service_job:
-  cron: '0 * * * *'
+  cron: '59 * * * *'
   class: 'InitiateAddUsersDataServiceJob'
   active_job: true
